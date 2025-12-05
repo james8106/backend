@@ -8,12 +8,17 @@ CREATE TABLE IF NOT EXISTS users (
 ); 
 
 CREATE TABLE positions (
-    position_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    position_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     position_code VARCHAR(100) NOT NULL,
     position_name VARCHAR(300) NOT NULL,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+
+INSERT INTO positions (position_code, position_name, user_id)
+VALUES (?, ?, ?)
+
 );
 

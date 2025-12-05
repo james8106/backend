@@ -72,33 +72,4 @@ export class AuthService {
             throw new UnauthorizedException("Could not refresh tokens");
         }
     }
-
-async register(username: string, password: string) {
-    // Check if the username already exists
-    const existingUser = await this.usersService.findByUsername(username);
-    if (existingUser) {
-        throw new UnauthorizedException("Username already taken");
-    }
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
-    const newUser = await this.usersService.create({
-        username,
-        password: hashedPassword,
-        role: "user" // or default role
-    });
-
-    return {
-        message: "User registered successfully",
-        user: {
-            id: newUser.id,
-            username: newUser.username,
-            role: newUser.role
-        }
-    };
-}
-
-
 }
