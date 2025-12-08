@@ -11,16 +11,13 @@ async function bootstrap() {
   });
 
   app.enableCors({
-  origin: [
-      'http://localhost:3000',
-      'http://192.168.1.5:3000',
-      'https://your-frontend-domain.com',
-      'https://backend-tk76..onrender.com'
-  ],
-
-  methods: "GET,POST,PUT,PATCH,DELETE",
-  credentials: true,
-});
+    origin: [
+      "https://frontended.vercel.app",
+      "http://localhost:3000",
+    ],
+    methods:  ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    credentials: true,
+  });
 
   const port = process.env.PORT || 3000;
   await app.listen(process.env.PORT || 3000);
